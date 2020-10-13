@@ -1,8 +1,12 @@
 import mongoose from 'mongoose';
 
-const paymentSchema = new mongoose.model({
+const paymentSchema = mongoose.Schema({
 	cost: String,
-	user: String,
+	user: {
+		googleId: String,
+		facebookId: String,
+		name: String
+	},
 	txnid: String,
 	success: {
 		type: Boolean,
@@ -11,4 +15,4 @@ const paymentSchema = new mongoose.model({
 	date: Date
 });
 
-export default new mongoose.model('payments', paymentSchema);
+export default mongoose.model('payments', paymentSchema);

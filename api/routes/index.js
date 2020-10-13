@@ -1,6 +1,8 @@
 import express from 'express';
 import '../config/oauth/google';
 import '../config/oauth/facebook';
+import payment from './payment';
+import auth from './auth';
 import passport from 'passport';
 const router = express.Router();
 
@@ -40,6 +42,9 @@ router.get('/home', async (req, res) => {
 		user: req.user
 	});
 });
+
+router.post('/pay', auth.islogged, payment.pay);
+router.post('/paytm/callback', payment.callback);
 
 router.get('/logout', (req, res) => {
 	req.session.destroy();

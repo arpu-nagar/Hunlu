@@ -1,8 +1,7 @@
 let exp = {};
 
-exp.islogged = async (req, res) => {
-	if (req.user) return true;
-
+exp.islogged = async (req, res, next) => {
+	if (req.user) next();
 	return false;
 };
 
