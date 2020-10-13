@@ -1,0 +1,21 @@
+{
+  "env": {
+    "node": true,
+    "es2021": true
+  },
+  "extends": [
+    "prettier"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "rules": {
+    "curly": [
+      "error",
+      "multi",
+      "consistent"
+    ],
+    "no-console": "off"
+  }
+}
