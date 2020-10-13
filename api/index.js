@@ -20,6 +20,11 @@ app.use(cors());
 passportConfig(passport);
 app.use(passport.initialize());
 app.use(passport.session());
+app.set('view engine', 'ejs');
+
+app.get('/pay', (req, res) => {
+	res.render('pay');
+});
 
 app.use('/api', routes);
 

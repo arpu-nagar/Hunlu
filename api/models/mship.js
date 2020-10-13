@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
 
-const mshipSchema = new mongoose.model({
+const mshipSchema = new mongoose.Schema({
 	type: String,
 	cost: String
 });
 
-export default new mongoose.model('membership', mshipSchema);
+export default mongoose.model('membership', mshipSchema);
