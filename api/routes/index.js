@@ -10,7 +10,7 @@ const router = express.Router();
 router.get(
 	'/auth/google',
 	passport.authenticate('google', {
-		scope: ['https://www.googleapis.com/auth/plus.login']
+		scope: ['https://www.googleapis.com/auth/plus.login', 'email']
 	})
 );
 
@@ -31,10 +31,10 @@ router.get(
 
 router.get(
 	'/auth/facebook/callback',
-	passport.authenticate('facebook', {
-		successRedirect: '/home',
-		failureRedirect: '/login'
-	})
+	passport.authenticate('facebook', { failureRedirect: '/login' }),
+	(req, res) => {
+		res.redirect('/api/home');
+	}
 );
 
 router.get('/home', async (req, res) => {

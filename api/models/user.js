@@ -2,10 +2,12 @@ import mongoose from 'mongoose';
 
 const userSchema = new mongoose.Schema({
 	googleId: {
-		type: String
+		type: String,
+		unique: true
 	},
 	facebookId: {
-		type: String
+		type: String,
+		unique: true
 	},
 	email: {
 		type: String
@@ -18,4 +20,4 @@ const userSchema = new mongoose.Schema({
 	}
 });
 
-export default  mongoose.model('user', userSchema);
+export default mongoose.model('user', userSchema);
