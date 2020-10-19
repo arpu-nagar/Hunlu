@@ -123,7 +123,7 @@ exp.callback = async (req, res) => {
 
 		const paytmChecksum = data.CHECKSUMHASH;
 
-		var isVerifySignature = PaytmChecksum.verifySignature(
+		let isVerifySignature = PaytmChecksum.verifySignature(
 			data,
 			PaytmConfig.PaytmConfig.key,
 			paytmChecksum
@@ -131,7 +131,7 @@ exp.callback = async (req, res) => {
 		if (isVerifySignature) {
 			console.log('Checksum Matched');
 
-			var paytmParams = {};
+			let paytmParams = {};
 
 			paytmParams.body = {
 				mid: PaytmConfig.PaytmConfig.mid,
@@ -146,9 +146,9 @@ exp.callback = async (req, res) => {
 					signature: checksum
 				};
 
-				var post_data = JSON.stringify(paytmParams);
+				let post_data = JSON.stringify(paytmParams);
 
-				var options = {
+				let options = {
 					/* for Staging */
 					hostname: 'securegw-stage.paytm.in',
 
@@ -167,8 +167,8 @@ exp.callback = async (req, res) => {
 				};
 
 				// Set up the request
-				var response = '';
-				var post_req = https.request(options, function (
+				let response = '';
+				let post_req = https.request(options, function (
 					post_res
 				) {
 					post_res.on('data', function (chunk) {
@@ -194,7 +194,9 @@ exp.callback = async (req, res) => {
 											.orderId
 								},
 								{
-									success: true
+									$set: {
+										success: true
+									}
 								}
 							);
 							if (
