@@ -1,12 +1,18 @@
-import React from 'react';
+import React , {useContext} from 'react';
 import { Route, Redirect } from 'react-router-dom';
-
-const isLogin = () => {
-	return false;
+import UserContext from '../context/userContext';
+import axios from 'axios';
+const PublicRoute = ({ comp: Component, restricted, ...rest }) => {
+	const isLogin = async () => {
+	const blob = await axios.post('/api/status');
+	console.log(blob)
+	if(blob.data.success) return isLog(true);
+	return isLog(false)
 };
-
-const PublicRoute = ({ component: Component, restricted, ...rest }) => {
-	console.log(isLogin() && restricted);
+const isLog = (val) => {
+	return val;
+}
+	console.log(isLogin());
 	return (
 		// restricted = false meaning public route
 		// restricted = true meaning restricted route

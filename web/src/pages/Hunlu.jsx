@@ -38,10 +38,10 @@ export default function Hunlu() {
 			<BrowserRouter>
 				<Switch>
 					<PrivateRoute comp={Main} path="/home" exact />
-					<PublicRoute restricted={false} component={Home} path="/" exact />
+					<PublicRoute restricted={false} comp={Home} path="/" exact />
 					<PublicRoute
 						restricted={true}
-						component={Login}
+						comp={Login}
 						path="/login"
 						exact
 					/>
