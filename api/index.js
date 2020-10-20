@@ -16,7 +16,13 @@ connectDB();
 app.use(body.json());
 app.use(body.urlencoded({ extended: false }));
 app.use(logger('dev'));
-app.use(cors());
+app.use(
+	cors({
+		origin: 'http://localhost:3000', // allow to server to accept request from different origin
+		methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+		credentials: true // allow session cookie from browser to pass through
+	})
+);
 passportConfig(passport);
 app.use(passport.initialize());
 app.use(passport.session());

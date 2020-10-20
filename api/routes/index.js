@@ -7,7 +7,7 @@ import passport from 'passport';
 const router = express.Router();
 
 //auth routes
-router.post(
+router.get(
 	'/auth/google',
 	passport.authenticate('google', {
 		scope: ['https://www.googleapis.com/auth/plus.login', 'email']
@@ -18,7 +18,7 @@ router.get(
 	'/auth/google/callback',
 	passport.authenticate('google', { failureRedirect: '/login' }),
 	(req, res) => {
-		res.redirect('/api/home');
+		res.redirect('http://localhost:3000/home');
 	}
 );
 
