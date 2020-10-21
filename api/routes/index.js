@@ -16,7 +16,7 @@ router.get(
 
 router.get(
 	'/auth/google/callback',
-	passport.authenticate('google', { failureRedirect: '/login' }),
+	passport.authenticate('google', { failureRedirect: 'http://localhost:3000/login' }),
 	(req, res) => {
 		res.redirect('http://localhost:3000/home');
 	}
@@ -31,9 +31,9 @@ router.get(
 
 router.get(
 	'/auth/facebook/callback',
-	passport.authenticate('facebook', { failureRedirect: '/login' }),
+	passport.authenticate('facebook', { failureRedirect: 'http://localhost:3000/login' }),
 	(req, res) => {
-		res.redirect('/login');
+		res.redirect('http://localhost:3000/home');
 	}
 );
 

@@ -14,6 +14,7 @@ export default function Hunlu() {
 		id: null,
 		isPaid: false,
 	});
+	const [loading, setLoading] = useState(true);
 	useEffect(() => {
 		const checkLoggedIn = async () => {
 			const data = await axios.post('/api/status', null, {
@@ -23,18 +24,18 @@ export default function Hunlu() {
 				withCredentials: true,
 			});
 			if (data.data.success) {
-				console.log(data);
 				setUserData({
 					name: data.data.user.name,
 					id: data.data.user.googleId || data.data.user.facebookId,
 				});
 			}
+			setLoading(false)
 		};
-
-		checkLoggedIn();
+		checkLoggedIn()
 	}, []);
+		if(loading) return <div>Loading</div>
 	return (
-		<UserContext.Provider values={{ UserData, setUserData }}>
+		<UserContext.Provider value={{ UserData, setUserData }}>
 			<BrowserRouter>
 				<Switch>
 					<PrivateRoute comp={Main} path="/home" exact />
