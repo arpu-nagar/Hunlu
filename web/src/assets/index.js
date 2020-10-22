@@ -1,0 +1,1 @@
+export const home_bg = require('./home-landing.png')
