@@ -2,7 +2,7 @@ import React from 'react';
 export default function Login() {
 	const google = async () => {
 		try {
-			window.open("/api/auth/google", "_self");
+			window.open('/api/auth/google', '_self');
 		} catch (err) {
 			console.log(err);
 		}
@@ -10,11 +10,11 @@ export default function Login() {
 
 	const facebook = async () => {
 		try {
-			window.open("/api/auth/facebook", "_self");
+			window.open('/api/auth/facebook', '_self');
 		} catch (err) {
 			console.log(err);
 		}
-	}
+	};
 
 	return (
 		<div>

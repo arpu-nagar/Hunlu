@@ -4,6 +4,7 @@ import '../config/oauth/facebook';
 import payment from './payment';
 import auth from './auth';
 import passport from 'passport';
+import User from '../models/user'
 const router = express.Router();
 
 //auth routes
@@ -44,19 +45,30 @@ router.get('/home', async (req, res) => {
 });
 
 router.post('/status', async (req, res) => {
-	if (req.user)
+	if (req.user){
+		let ex;
+		if(req.user.googleId){
+			ex = await User.findOne({googleId: req.user.googleId});
+		}
+		else ex = await User.findOne({facebookId: req.user.facebookId})
+
+		if(ex.membership == "1") req.session.isPaid = true
+		else req.session.isPaid = false
 		res.send({
 			user: req.user,
-			success: true
+			success: true,
+			isPaid: req.session.isPaid
 		});
+	}
 	else
 		res.send({
 			user: null,
-			success: false
+			success: false,
+			isPaid: false
 		});
 });
 
-router.post('/pay', auth.islogged, payment.pay);
+router.get('/pay/:id', auth.islogged, payment.pay);
 router.post('/paytm/callback', payment.callback);
 
 router.get('/logout', (req, res) => {

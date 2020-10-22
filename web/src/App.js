@@ -7,6 +7,6 @@ function App() {
 			<Hunlu />
 		</div>
 	);
-}		
+}
 
 export default App;

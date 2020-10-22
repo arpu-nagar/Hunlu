@@ -18,9 +18,9 @@ exp.pay =
 		// let data = req.body.type;
 		// const mem = await Mship.findOne({ type: data });
 		const orderId = 'HUNLU_' + new Date().getTime();
-
+		const {id} = req.params;
 		const newPay = new Pay({
-			cost: '200',
+			cost: id,
 			type: '1',
 			txnid: orderId,
 			date: new Date().getDate(),
@@ -231,11 +231,13 @@ exp.callback = async (req, res) => {
 												'1'
 										}
 									}
+									
 								);
+								res.redirect(`http://localhost:3000/home?msg=success`)
 						} else {
-							// failed Transaction not recorded
+							res.redirect(`http://localhost:3000/home?msg=failed`)
 						}
-						res.write(response);
+						
 
 						res.end();
 					});

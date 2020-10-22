@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
 
-export const Main = () => {
+export default () => {
 	return <div>Hello from Main page.</div>;
 };
