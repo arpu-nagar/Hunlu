@@ -12,8 +12,11 @@
 		"prettier": "^2.1.2",
 		"react": "^16.13.1",
 		"react-dom": "^16.13.1",
+		"react-facebook-login": "^4.1.1",
+		"react-google-button": "^0.7.1",
 		"react-router-dom": "^5.2.0",
 		"react-scripts": "3.4.3",
+		"semantic-ui-react": "^2.0.0",
 		"styled-components": "^5.2.0"
 	},
 	"scripts": {

@@ -1,1 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@700;900&display=swap');
 @import 'antd/dist/antd.css';
+
+.App{
+	font-family: 'Lato', sans-serif;
+}

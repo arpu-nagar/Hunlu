@@ -24,12 +24,12 @@ export default function Hunlu() {
 				},
 				withCredentials: true,
 			});
-			console.log('WOrks')
+			console.log('WOrks');
 			if (data.data.success) {
 				setUserData({
 					name: data.data.user.name,
 					id: data.data.user.googleId || data.data.user.facebookId,
-					isPaid: data.data.isPaid
+					isPaid: data.data.isPaid,
 				});
 			}
 			setLoading(false);
@@ -42,9 +42,24 @@ export default function Hunlu() {
 			<BrowserRouter>
 				<Switch>
 					<PrivateRoute comp={Main} path="/home" exact />
-					<PublicRoute restricted={false} comp={Pay} path="/pay" exact />
-					<PublicRoute restricted={false} comp={Home} path="/" exact />
-					<PublicRoute restricted={true} comp={Login} path="/login" exact />
+					<PublicRoute
+						restricted={false}
+						comp={Pay}
+						path="/pay"
+						exact
+					/>
+					<PublicRoute
+						restricted={false}
+						comp={Home}
+						path="/"
+						exact
+					/>
+					<PublicRoute
+						restricted={true}
+						comp={Login}
+						path="/login"
+						exact
+					/>
 				</Switch>
 			</BrowserRouter>
 		</UserContext.Provider>
