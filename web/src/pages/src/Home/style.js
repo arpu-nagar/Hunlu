@@ -22,4 +22,3 @@ export const Heading = styled.h1`
 	letter-spacing: 5px;
 	font-family: 'Lato', sans-serif;
 `;
-

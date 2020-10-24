@@ -8,6 +8,7 @@ import Login from './src/Login/Login';
 import PublicRoute from './PublicRoute';
 import UserContext from '../context/userContext';
 import Pay from './src/Pay/Pay';
+import Load from '../components/Load';
 
 export default function Hunlu() {
 	const [UserData, setUserData] = useState({
@@ -36,7 +37,7 @@ export default function Hunlu() {
 		};
 		checkLoggedIn();
 	}, []);
-	if (loading) return <div>Loading</div>;
+	if (loading) return <Load />;
 	return (
 		<UserContext.Provider value={{ UserData, setUserData }}>
 			<BrowserRouter>
