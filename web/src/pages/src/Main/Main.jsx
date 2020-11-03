@@ -1,6 +1,8 @@
 // @flow
 import * as React from 'react';
-
-export default () => {
-	return <div>Hello from Main page.</div>;
-};
+import Navbar from '../../../components/Navbar'
+export default Home => {
+	return(
+		<Navbar />
+	)
+}
