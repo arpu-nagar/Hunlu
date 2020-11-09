@@ -39,9 +39,9 @@ function Pay() {
 	return (
 		<Container>
 			<Form>
-					<h2>Membership type</h2>
+					<h1>Membership type</h1>
 	<div>{friendOptions.map((obj) => {
-		return <div>{obj.text} for Access to Type {obj.key}.</div>
+		return <div key={obj.key}>{obj.text} for Access to Type {obj.key}.</div>
 	})}</div>
 			</Form>
 			<Sub>
@@ -52,6 +52,9 @@ function Pay() {
 				options={friendOptions}
 				onChange={(event) => {
 					setSel(event.target.value);
+				}}
+				style={{
+					marginBottom: "100px"
 				}}
 			/>
 			<Button secondary type="submit" value="Submit" onClick={submit}>
