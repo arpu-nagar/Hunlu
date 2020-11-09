@@ -1,6 +1,5 @@
 import express from 'express';
 import https from 'https';
-import qs from 'querystring';
 const parseJson = express.json({ extended: false });
 const parseUrl = express.urlencoded({ extended: false });
 
@@ -18,7 +17,7 @@ exp.pay =
 		// let data = req.body.type;
 		// const mem = await Mship.findOne({ type: data });
 		const orderId = 'HUNLU_' + new Date().getTime();
-		const {id} = req.params;
+		const { id } = req.params;
 		const newPay = new Pay({
 			cost: id,
 			type: '1',
@@ -231,13 +230,15 @@ exp.callback = async (req, res) => {
 												'1'
 										}
 									}
-									
 								);
-								res.redirect(`http://localhost:3000/home?msg=success`)
+							res.redirect(
+								`http://localhost:3000/home?msg=success`
+							);
 						} else {
-							res.redirect(`http://localhost:3000/home?msg=failed`)
+							res.redirect(
+								`http://localhost:3000/home?msg=failed`
+							);
 						}
-						
 
 						res.end();
 					});

@@ -4,7 +4,7 @@ import {
 	createCipheriv,
 	createDecipheriv,
 	randomBytes,
-	createHash
+	createHash,
 } from 'crypto';
 import { inspect } from 'util';
 
@@ -82,7 +82,7 @@ let crypt = {
 		return createHash('sha256')
 			.update(data + salt)
 			.digest('hex');
-	}
+	},
 };
 
 export default crypt;

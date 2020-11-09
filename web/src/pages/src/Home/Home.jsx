@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Container, Heading } from './style';
+import { Container, Heading , SubHead} from './style';
 import { Button, Icon } from 'semantic-ui-react';
 
 const Home = () => {
@@ -9,13 +9,14 @@ const Home = () => {
 	return (
 		<Container>
 			<Heading>HUNLU</Heading>
+			<SubHead>Re-imagine watching movies at home.</SubHead>
 			{load ? (
 				<Button basic loading>
 					Loading
 				</Button>
 			) : (
 				<Button
-					secondary
+					primary
 					onClick={() => {
 						setLoad(true);
 						history.push('/login');

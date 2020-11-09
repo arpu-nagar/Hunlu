@@ -5,14 +5,14 @@ const paymentSchema = mongoose.Schema({
 	user: {
 		googleId: String,
 		facebookId: String,
-		name: String
+		name: String,
 	},
 	txnid: String,
 	success: {
 		type: Boolean,
-		default: false
+		default: false,
 	},
-	date: Date
+	date: Date,
 });
 
 export default mongoose.model('payments', paymentSchema);

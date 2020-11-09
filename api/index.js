@@ -9,6 +9,7 @@ import connectDB from './db/db';
 import session from './config/session';
 import routes from './routes/index';
 import passportConfig from './config/passport';
+import './config/aws';
 
 const app = express();
 app.use(session);

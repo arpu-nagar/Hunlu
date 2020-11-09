@@ -4,7 +4,7 @@ import '../config/oauth/facebook';
 import payment from './payment';
 import auth from './auth';
 import passport from 'passport';
-import User from '../models/user'
+import User from '../models/user';
 const router = express.Router();
 
 //auth routes
@@ -17,7 +17,9 @@ router.get(
 
 router.get(
 	'/auth/google/callback',
-	passport.authenticate('google', { failureRedirect: 'http://localhost:3000/login' }),
+	passport.authenticate('google', {
+		failureRedirect: 'http://localhost:3000/login'
+	}),
 	(req, res) => {
 		res.redirect('http://localhost:3000/home');
 	}
@@ -32,7 +34,9 @@ router.get(
 
 router.get(
 	'/auth/facebook/callback',
-	passport.authenticate('facebook', { failureRedirect: 'http://localhost:3000/login' }),
+	passport.authenticate('facebook', {
+		failureRedirect: 'http://localhost:3000/login'
+	}),
 	(req, res) => {
 		res.redirect('http://localhost:3000/home');
 	}
@@ -45,27 +49,31 @@ router.get('/home', async (req, res) => {
 });
 
 router.post('/status', async (req, res) => {
-	if (req.user){
+	if (req.user) {
 		let ex;
-		if(req.user.googleId){
-			ex = await User.findOne({googleId: req.user.googleId});
-		}
-		else ex = await User.findOne({facebookId: req.user.facebookId})
+		if (req.user.googleId)
+			ex = await User.findOne({
+				googleId: req.user.googleId
+			});
+		else
+			ex = await User.findOne({
+				facebookId: req.user.facebookId
+			});
 
-		if(ex.membership == "1") req.session.isPaid = true
-		else req.session.isPaid = false
+		if (ex.membership == '1') req.session.isPaid = true;
+		else req.session.isPaid = false;
 		res.send({
 			user: req.user,
 			success: true,
 			isPaid: req.session.isPaid
 		});
-	}
-	else
+	} else {
 		res.send({
 			user: null,
 			success: false,
 			isPaid: false
 		});
+	}
 });
 
 router.get('/pay/:id', auth.islogged, payment.pay);

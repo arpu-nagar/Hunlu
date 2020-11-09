@@ -3,7 +3,7 @@ import 'dotenv/config';
 const PaytmConfig = {
 	mid: process.env.MID,
 	key: process.env.KEY,
-	website: process.env.WEBSITE
+	website: process.env.WEBSITE,
 };
 
 const _PaytmConfig = PaytmConfig;

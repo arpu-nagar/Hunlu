@@ -3,21 +3,26 @@ import mongoose from 'mongoose';
 const userSchema = new mongoose.Schema({
 	googleId: {
 		type: String,
-		unique: true
+		unique: true,
 	},
 	facebookId: {
 		type: String,
-		unique: true
+		unique: true,
 	},
 	email: {
-		type: String
+		type: String,
 	},
 	name: {
-		type: String
+		type: String,
 	},
 	membership: {
-		type: String
-	}
+		type: String,
+	},
+	favorites: [Number],
+	admin: {
+		type: Number,
+		default: 0,
+	},
 });
 
 export default mongoose.model('user', userSchema);

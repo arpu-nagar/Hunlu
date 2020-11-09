@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled , { keyframes } from 'styled-components';
 import { home_bg } from '../../../assets/index';
 import { Button } from 'semantic-ui-react';
 
@@ -14,11 +14,33 @@ export const Container = styled.div`
 	background-size: cover;
 `;
 
+export const glow = keyframes`
+from {
+    text-shadow: 0 0 0px #fff, 0 0 0px #fff, 0 0 0px #fff, 0 0 0px #fff, 0 0 0px #fff, 0 0 0px #fff, 0 0 0px #fff;
+  }
+  to {
+    text-shadow: 0 0 3px #fff, 0 0 3px #fff, 0 0 3px #fff, 0 0 3px #fff, 0 0 3px #fff, 0 0 3px #fff, 0 0 3px #fff;
+  }	
+`;
+
 export const Heading = styled.h1`
-	font-size: 15em;
-	padding-bottom: 12.5%;
-	color: #333;
+	font-size: 12em;
+	padding-bottom: 0%;
+	color: #eee;
 	font-weight: 900;
 	letter-spacing: 5px;
 	font-family: 'Lato', sans-serif;
+  	z-index: 2;
 `;
+
+export const SubHead = styled.h4`
+font-size: 2em;padding-bottom: 5.5%;
+color: lightgrey;
+font-weight: 500;
+letter-spacing: 2px;
+font-family: 'Lato', sans-serif;
+  z-index: 2;
+  -webkit-animation: ${glow} 1s ease-in-out infinite alternate;
+  -moz-animation: ${glow} 1s ease-in-out infinite alternate;
+  animation: ${glow} 1s ease-in-out infinite alternate;
+`
