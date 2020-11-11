@@ -4,7 +4,7 @@ import redisStore from './redis';
 export default session({
 	resave: false,
 	saveUninitialized: false,
-	secret: process.env.SESSION_SECRET || 'nice',
+	secret: process.env.SESSION_SECRET || 'nicse',
 	store: redisStore(session),
-	cookie: { maxAge: 604800000 }
+	cookie: { maxAge: 604800000 },
 });

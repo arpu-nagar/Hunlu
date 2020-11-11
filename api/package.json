@@ -4,6 +4,7 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
+		"preinstall": "npm i nodemon -g",
 		"build": "babel index.js -d dist",
 		"start": "nodemon --exec babel-node index.js",
 		"test": "echo \"Error: no test specified\" && exit 1"
@@ -21,9 +22,12 @@
 		"ejs": "3.1.5",
 		"express": "4.17.1",
 		"express-session": "1.17.1",
+		"fs": "0.0.1-security",
 		"http": "0.0.1-security",
 		"mongoose": "^5.10.9",
 		"morgan": "^1.10.0",
+		"multer": "1.4.2",
+		"multer-s3": "2.9.0",
 		"passport": "^0.4.1",
 		"passport-facebook": "3.0.0",
 		"passport-google-oauth": "2.0.0",

@@ -1,0 +1,30 @@
+version: '3.3'
+services:
+  api:
+    build:
+      context: ./api
+      dockerfile: C:\Users\Nagar\Desktop\node_web\Hunlu\api\Dockerfile
+    restart: always
+    networks:
+      - network
+    depends_on:
+      - redis
+    command: ['./api/wait-for-it.sh', 'redis:6379', '--', 'python', 'app.py']
+    volumes:
+      - './api:/usr/src/api'
+    expose:
+      - 2525
+    ports:
+      - '2525:2525'
+    env_file: ./api/.env
+    environment:
+      WAIT_HOSTS: redis:6379
+      REDIS_HOST: redis
+  redis:
+    image: redis:alpine
+    restart: always
+    networks:
+      - network
+networks:
+  network:
+    driver: bridge

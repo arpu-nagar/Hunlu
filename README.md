@@ -2,6 +2,12 @@
 
 This is not a reference to Silicon Valley.
 
+## TODOS
+
+1. Fix Docker
+2. Complete client stuff
+3. Like, dislike and favourite routes.
+
 ## Overview
 
 Hunlu is a paid Video on Demand (VOD) application.
@@ -39,6 +45,20 @@ Access_Key_ID =
 AWS_Secret_Access_Key =
 ```
 
+## How to run?
+
+### Using docker
+
 ```(bash)
+    cd Hunlu
+    docker-compose up -build
+```
+
+### Using npm
+
+```(bash)
+    cd api
+    npm start
+    cd ../web
     npm start
 ```

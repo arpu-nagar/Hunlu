@@ -1,7 +1,6 @@
 import mongoose from 'mongoose';
 
 const contentSchema = new mongoose.Schema({
-	id: Number,
 	link: {
 		type: String,
 		required: true,
@@ -14,7 +13,7 @@ const contentSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 	},
-	genre: [String],
+	genre: String,
 	rating: [
 		{
 			organisation: String,

@@ -5,20 +5,22 @@ import payment from './payment';
 import auth from './auth';
 import passport from 'passport';
 import User from '../models/user';
+import upload from '../config/aws';
+import admin from './admin';
 const router = express.Router();
 
 //auth routes
 router.get(
 	'/auth/google',
 	passport.authenticate('google', {
-		scope: ['https://www.googleapis.com/auth/plus.login', 'email']
+		scope: ['https://www.googleapis.com/auth/plus.login', 'email'],
 	})
 );
 
 router.get(
 	'/auth/google/callback',
 	passport.authenticate('google', {
-		failureRedirect: 'http://localhost:3000/login'
+		failureRedirect: 'http://localhost:3000/login',
 	}),
 	(req, res) => {
 		res.redirect('http://localhost:3000/home');
@@ -28,14 +30,14 @@ router.get(
 router.get(
 	'/auth/facebook',
 	passport.authenticate('facebook', {
-		scope: ['email']
+		scope: ['email'],
 	})
 );
 
 router.get(
 	'/auth/facebook/callback',
 	passport.authenticate('facebook', {
-		failureRedirect: 'http://localhost:3000/login'
+		failureRedirect: 'http://localhost:3000/login',
 	}),
 	(req, res) => {
 		res.redirect('http://localhost:3000/home');
@@ -44,7 +46,7 @@ router.get(
 
 router.get('/home', async (req, res) => {
 	return res.send({
-		user: req.user
+		user: req.user,
 	});
 });
 
@@ -53,11 +55,11 @@ router.post('/status', async (req, res) => {
 		let ex;
 		if (req.user.googleId)
 			ex = await User.findOne({
-				googleId: req.user.googleId
+				googleId: req.user.googleId,
 			});
 		else
 			ex = await User.findOne({
-				facebookId: req.user.facebookId
+				facebookId: req.user.facebookId,
 			});
 
 		if (ex.membership == '1') req.session.isPaid = true;
@@ -65,13 +67,13 @@ router.post('/status', async (req, res) => {
 		res.send({
 			user: req.user,
 			success: true,
-			isPaid: req.session.isPaid
+			isPaid: req.session.isPaid,
 		});
 	} else {
 		res.send({
 			user: null,
 			success: false,
-			isPaid: false
+			isPaid: false,
 		});
 	}
 });
@@ -82,8 +84,10 @@ router.post('/paytm/callback', payment.callback);
 router.get('/logout', (req, res) => {
 	req.session.destroy();
 	return res.send({
-		success: true
+		success: true,
 	});
 });
+
+router.post('/upload', upload.single('upload'), admin.addContent);
 
 export default router;

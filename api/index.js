@@ -14,24 +14,19 @@ import './config/aws';
 const app = express();
 app.use(session);
 connectDB();
-app.use(body.json());
-app.use(body.urlencoded({ extended: false }));
+app.use(body.json({ limit: '50mb' }));
+app.use(body.urlencoded({ limit: '50mb', extended: false }));
 app.use(logger('dev'));
 app.use(
 	cors({
 		origin: 'http://localhost:3000', // allow to server to accept request from different origin
 		methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-		credentials: true // allow session cookie from browser to pass through
+		credentials: true, // allow session cookie from browser to pass through
 	})
 );
 passportConfig(passport);
 app.use(passport.initialize());
 app.use(passport.session());
-app.set('view engine', 'ejs');
-
-app.get('/pay', (req, res) => {
-	res.render('pay');
-});
 
 app.use('/api', routes);
 
