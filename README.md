@@ -4,7 +4,6 @@ This is not a reference to Silicon Valley.
 
 ## TODOS
 
-1. Fix Docker
 2. Complete client stuff
 3. Like, dislike and favourite routes.
 

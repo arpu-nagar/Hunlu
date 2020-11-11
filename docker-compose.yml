@@ -9,7 +9,6 @@ services:
       - network
     depends_on:
       - redis
-    command: ['./api/wait-for-it.sh', 'redis:6379', '--', 'python', 'app.py']
     volumes:
       - './api:/usr/src/api'
     expose:
@@ -18,11 +17,27 @@ services:
       - '2525:2525'
     env_file: ./api/.env
     environment:
-      WAIT_HOSTS: redis:6379
       REDIS_HOST: redis
+      REDIS_PORT: 6379
+  web:
+    stdin_open: true
+    build:
+      context: ./web
+      dockerfile: C:\Users\Nagar\Desktop\node_web\Hunlu\web\Dockerfile
+    restart: unless-stopped
+    networks:
+      - network
+    depends_on:
+      - api
+    volumes:
+      - './web:/usr/src/web'
+    expose:
+      - 3000
+    ports:
+      - '3000:3000'
   redis:
-    image: redis:alpine
-    restart: always
+    image: redis
+    restart: unless-stopped
     networks:
       - network
 networks:

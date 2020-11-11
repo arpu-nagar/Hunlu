@@ -3,7 +3,7 @@ import UserContext from '../../../context/userContext';
 import Axios from 'axios';
 import { useHistory } from 'react-router';
 import { Dropdown, Button } from 'semantic-ui-react';
-import { Container , Form , Sub} from './style';
+import { Container, Form, Sub } from './style';
 function Pay() {
 	const friendOptions = [
 		{
@@ -39,27 +39,33 @@ function Pay() {
 	return (
 		<Container>
 			<Form>
-					<h1>Membership type</h1>
-	<div>{friendOptions.map((obj) => {
-		return <div key={obj.key}>{obj.text} for Access to Type {obj.key}.</div>
-	})}</div>
+				<h1>Membership type</h1>
+				<div>
+					{friendOptions.map((obj) => {
+						return (
+							<div key={obj.key}>
+								{obj.text} for Access to Type {obj.key}.
+							</div>
+						);
+					})}
+				</div>
 			</Form>
 			<Sub>
-			<Dropdown
-				placeholder="Select Membership Price"
-				fluid
-				selection
-				options={friendOptions}
-				onChange={(event) => {
-					setSel(event.target.value);
-				}}
-				style={{
-					marginBottom: "100px"
-				}}
-			/>
-			<Button secondary type="submit" value="Submit" onClick={submit}>
-				Buy Membership
-			</Button>
+				<Dropdown
+					placeholder="Select Membership Price"
+					fluid
+					selection
+					options={friendOptions}
+					onChange={(event) => {
+						setSel(event.target.value);
+					}}
+					style={{
+						marginBottom: '100px',
+					}}
+				/>
+				<Button secondary type="submit" value="Submit" onClick={submit}>
+					Buy Membership
+				</Button>
 			</Sub>
 		</Container>
 	);
