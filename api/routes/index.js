@@ -7,6 +7,8 @@ import passport from 'passport';
 import User from '../models/user';
 import upload from '../config/aws';
 import admin from './admin';
+import content from './content';
+import Content from '../models/content';
 const router = express.Router();
 
 //auth routes
@@ -64,10 +66,15 @@ router.post('/status', async (req, res) => {
 
 		if (ex.membership == '1') req.session.isPaid = true;
 		else req.session.isPaid = false;
+
+		const content = await Content.find({});
 		res.send({
+			userID: ex._id,
 			user: req.user,
 			success: true,
 			isPaid: req.session.isPaid,
+			content: content,
+			favorites: ex.favorites,
 		});
 	} else {
 		res.send({
@@ -80,6 +87,11 @@ router.post('/status', async (req, res) => {
 
 router.get('/pay/:id', auth.islogged, payment.pay);
 router.post('/paytm/callback', payment.callback);
+
+// user routes
+router.post('/content/fav', content.addFavourite);
+router.post('/content/like', content.like);
+router.post('/content/dislike', content.dislike);
 
 router.get('/logout', (req, res) => {
 	req.session.destroy();

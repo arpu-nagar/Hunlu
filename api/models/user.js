@@ -18,10 +18,16 @@ const userSchema = new mongoose.Schema({
 	membership: {
 		type: String,
 	},
-	favorites: [Number],
+	favorites: [String],
 	admin: {
 		type: Number,
 		default: 0,
+	},
+	likes: [String],
+	dislikes: [String],
+	active: {
+		type: Number,
+		default: 1,
 	},
 });
 

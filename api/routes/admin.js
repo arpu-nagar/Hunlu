@@ -3,7 +3,7 @@ import Content from '../models/content';
 let exp = {};
 
 exp.addContent = async (req, res) => {
-	const { name, desc, genre, imdb, rt } = req.body;
+	const { name, desc, genre, imdb, rt, type } = req.body;
 	const { location } = req.file;
 
 	const newContent = new Content({
@@ -11,6 +11,7 @@ exp.addContent = async (req, res) => {
 		desc: desc,
 		link: location,
 		genre: genre,
+		type: type,
 		ratings: [
 			{
 				organisation: 'IMDB',
@@ -27,24 +28,21 @@ exp.addContent = async (req, res) => {
 		success: true,
 		msg: 'Content Added!',
 	});
-	// file: {
-	// 	fieldname: 'upload',
-	// 	originalname: 'videoplayback.mp4',
-	// 	encoding: '7bit',
-	// 	mimetype: 'video/mp4',
-	// 	size: 103935,
-	// 	bucket: 'hunlu-trial-1',
-	// 	key: '2020-11-10T09:23:01.241Z-videoplayback.mp4',
-	// 	acl: 'public-read',
-	// 	contentType: 'video/mp4',
-	// 	contentDisposition: null,
-	// 	storageClass: 'STANDARD',
-	// 	serverSideEncryption: null,
-	// 	metadata: { fieldName: 'upload' },
-	// 	location: 'https://hunlu-trial-1.s3.ap-south-1.amazonaws.com/2020-11-10T09%3A23%3A01.241Z-videoplayback.mp4',
-	// 	etag: '"a9d4d2597bc88e5777bd0c886ad6c30b"',
-	// 	versionId: undefined
-	//   },
+};
+
+exp.removeContent = async (req, res) => {
+	const id = req.params.id;
+	const ok = await Content.deleteOne({ _id: id });
+	if (ok)
+		return res.send({
+			success: true,
+			msg: 'Deleted.',
+		});
+	else
+		return res.send({
+			success: true,
+			msg: 'No such content exists.',
+		});
 };
 
 export default exp;

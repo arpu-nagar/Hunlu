@@ -1,7 +1,7 @@
 import redis from 'redis';
 import connectRedis from 'connect-redis';
 
-const client = redis.createClient(6379, process.env.REDIS_HOST || 'redis');
+const client = redis.createClient(6379, process.env.REDIS_HOST || 'localhost');
 
 const redisConfig = {
 	client: client,
