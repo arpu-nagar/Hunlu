@@ -16,6 +16,12 @@ passport.use(
 				googleId: profile.id,
 			});
 			if (exists) {
+				await User.updateOne(
+					{
+						googleId: profile.id,
+					},
+					{ $inc: { active: 1 } }
+				);
 				return done(null, exists);
 			}
 
@@ -23,6 +29,7 @@ passport.use(
 				googleId: profile.id,
 				name: profile.displayName,
 				email: profile.emails[0].value,
+				active: 1,
 			});
 			await newUser.save();
 			return done(null, newUser);

@@ -5,6 +5,7 @@ import payment from './payment';
 import auth from './auth';
 import passport from 'passport';
 import User from '../models/user';
+import mship from '../models/mship';
 import upload from '../config/aws';
 import admin from './admin';
 import content from './content';
@@ -52,7 +53,7 @@ router.get('/home', async (req, res) => {
 	});
 });
 
-router.post('/status', async (req, res) => {
+router.get('/status', async (req, res) => {
 	if (req.user) {
 		let ex;
 		if (req.user.googleId)
@@ -64,9 +65,17 @@ router.post('/status', async (req, res) => {
 				facebookId: req.user.facebookId,
 			});
 
-		if (ex.membership == '1') req.session.isPaid = true;
+		if (ex.membership != '0') req.session.isPaid = true;
 		else req.session.isPaid = false;
 
+		console.log(ex.membership);
+		const mems = await mship.find({ type: ex.membership });
+		console.log(mems);
+		console.log(ex.active);
+
+		let ok;
+		if (mems.mems >= ex.active) ok = false;
+		else ok = true;
 		const content = await Content.find({});
 		res.send({
 			userID: ex._id,
@@ -75,6 +84,7 @@ router.post('/status', async (req, res) => {
 			isPaid: req.session.isPaid,
 			content: content,
 			favorites: ex.favorites,
+			ok: ok,
 		});
 	} else {
 		res.send({
@@ -93,7 +103,22 @@ router.post('/content/fav', content.addFavourite);
 router.post('/content/like', content.like);
 router.post('/content/dislike', content.dislike);
 
-router.get('/logout', (req, res) => {
+router.get('/logout', async (req, res) => {
+	let ex;
+	if (req.user.googleId)
+		ex = await User.findOne({
+			googleId: req.user.googleId,
+		});
+	else
+		ex = await User.findOne({
+			facebookId: req.user.facebookId,
+		});
+	await User.updateOne(
+		{
+			_id: ex._id,
+		},
+		{ $inc: { active: -1 } }
+	);
 	req.session.destroy();
 	return res.send({
 		success: true,

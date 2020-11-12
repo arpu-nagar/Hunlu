@@ -17,6 +17,7 @@ const userSchema = new mongoose.Schema({
 	},
 	membership: {
 		type: String,
+		default: '0',
 	},
 	favorites: [String],
 	admin: {
@@ -27,7 +28,7 @@ const userSchema = new mongoose.Schema({
 	dislikes: [String],
 	active: {
 		type: Number,
-		default: 1,
+		default: 0,
 	},
 });
 
