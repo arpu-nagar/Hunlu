@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Switch } from 'react-router-dom';
+import { BrowserRouter, Switch, useHistory } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
 import axios from 'axios';
 import Main from './src/Main/Main';
@@ -9,12 +9,17 @@ import PublicRoute from './PublicRoute';
 import UserContext from '../context/userContext';
 import Pay from './src/Pay/Pay';
 import Load from '../components/Load';
+import Invalid from './src/Invalid/Invalid';
 
 export default function Hunlu() {
+	const history = useHistory();
 	const [UserData, setUserData] = useState({
 		name: null,
 		id: null,
 		isPaid: false,
+		content: [],
+		favorites: [],
+		ok: true,
 	});
 	const [loading, setLoading] = useState(true);
 	useEffect(() => {
@@ -25,14 +30,18 @@ export default function Hunlu() {
 				},
 				withCredentials: true,
 			});
-			console.log('WOrks');
 			if (data.data.success) {
 				setUserData({
 					name: data.data.user.name,
 					id: data.data.user.googleId || data.data.user.facebookId,
 					isPaid: data.data.isPaid,
+					content: data.data.content,
+					userID: data.data.userID,
+					favorites: data.data.favorites,
+					ok: data.data.ok,
 				});
 			}
+			if (!UserData.ok) history.push('/invalid');
 			setLoading(false);
 		};
 		checkLoggedIn();
@@ -43,22 +52,13 @@ export default function Hunlu() {
 			<BrowserRouter>
 				<Switch>
 					<PrivateRoute comp={Main} path="/home" exact />
+					<PublicRoute restricted={false} comp={Pay} path="/pay" exact />
+					<PublicRoute restricted={false} comp={Home} path="/" exact />
+					<PublicRoute restricted={true} comp={Login} path="/login" exact />
 					<PublicRoute
 						restricted={false}
-						comp={Pay}
-						path="/pay"
-						exact
-					/>
-					<PublicRoute
-						restricted={false}
-						comp={Home}
-						path="/"
-						exact
-					/>
-					<PublicRoute
-						restricted={true}
-						comp={Login}
-						path="/login"
+						comp={Invalid}
+						path="/invalid"
 						exact
 					/>
 				</Switch>

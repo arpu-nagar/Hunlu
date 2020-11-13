@@ -53,7 +53,7 @@ router.get('/home', async (req, res) => {
 	});
 });
 
-router.get('/status', async (req, res) => {
+router.post('/status', async (req, res) => {
 	if (req.user) {
 		let ex;
 		if (req.user.googleId)
