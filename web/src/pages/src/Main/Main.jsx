@@ -1,11 +1,15 @@
 // @flow
-import * as React from 'react';
-import { Container } from 'semantic-ui-react';
+import React, { useState, useContext } from 'react';
 import Navbar from '../../../components/Navbar';
+import SearchContext from '../../../context/searchContent';
+import { Container } from './style';
 export default (Home) => {
+	const [search, setSearch] = useState('');
 	return (
-		<Container>
-			<Navbar />
-		</Container>
+		<SearchContext.Provider value={{ search, setSearch }}>
+			<Container>
+				<Navbar />
+			</Container>
+		</SearchContext.Provider>
 	);
 };

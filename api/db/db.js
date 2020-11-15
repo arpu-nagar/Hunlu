@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const connectDB = async () => {
 	try {
 		if (!process.env.MONGOURI) {
-			console.log('MONGOURI missing in .env');
+			console.log('MONGOURI missing in the .env file');
 			process.exit(0);
 		}
 		await mongoose.connect(process.env.MONGOURI, {
