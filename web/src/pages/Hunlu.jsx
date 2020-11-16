@@ -10,7 +10,7 @@ import UserContext from '../context/userContext';
 import Pay from './src/Pay/Pay';
 import Load from '../components/Load';
 import Invalid from './src/Invalid/Invalid';
-
+import Player from './src/Player/Player';
 export default function Hunlu() {
 	const history = useHistory();
 	const [UserData, setUserData] = useState({
@@ -61,6 +61,7 @@ export default function Hunlu() {
 						path="/invalid"
 						exact
 					/>
+					<PrivateRoute restricted={true} comp={Player} path="/play/:id" />
 				</Switch>
 			</BrowserRouter>
 		</UserContext.Provider>

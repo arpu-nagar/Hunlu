@@ -1,0 +1,16 @@
+.name {
+	font-size: 3.5rem;
+}
+
+.right {
+	float: right;
+}
+
+icon.ui.icon,
+.img {
+	width: 25px !important;
+}
+
+.like {
+	float: right;
+}

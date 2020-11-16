@@ -1,5 +1,5 @@
 import React, { Component, useState, useContext } from 'react';
-import { Input, Menu } from 'semantic-ui-react';
+import { Input, Menu, Label, Icon } from 'semantic-ui-react';
 import SearchContext from '../context/searchContent';
 
 export default class Navbar extends Component {
@@ -33,6 +33,7 @@ export default class Navbar extends Component {
 					active={activeItem === 'home'}
 					onClick={this.handleItemClick}
 				/>
+
 				<Menu.Item
 					name="favorites"
 					active={activeItem === 'favorites'}
@@ -46,6 +47,11 @@ export default class Navbar extends Component {
 							defaultValue=""
 							onChange={this.searchChange}
 						/>
+					</Menu.Item>
+					<Menu.Item>
+						<Label>
+							<Icon name="user" /> {this.props.name}
+						</Label>
 					</Menu.Item>
 					<Menu.Item
 						name="logout"
