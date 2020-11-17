@@ -20,6 +20,8 @@ export default function Hunlu() {
 		content: [],
 		favorites: [],
 		ok: true,
+		likes: [],
+		dislikes: [],
 	});
 	const [loading, setLoading] = useState(true);
 	useEffect(() => {
@@ -39,6 +41,8 @@ export default function Hunlu() {
 					userID: data.data.userID,
 					favorites: data.data.favorites,
 					ok: data.data.ok,
+					likes: data.data.likes,
+					dislikes: data.data.dislikes,
 				});
 			}
 			if (!UserData.ok) history.push('/invalid');

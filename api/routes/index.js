@@ -85,6 +85,8 @@ router.post('/status', async (req, res) => {
 			content: content,
 			favorites: ex.favorites,
 			ok: ok,
+			likes: ex.likes,
+			dislikes: ex.dislikes,
 		});
 	} else {
 		res.send({
