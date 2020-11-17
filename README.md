@@ -4,8 +4,9 @@ This is not a reference to Silicon Valley.
 
 ## TODOS
 
-2. Complete client stuff
-3. Like, dislike and favourite routes.
+1. Finish Player page.
+2. Make Like and other buttons working.
+3. Goto college.
 
 ## Overview
 
@@ -43,21 +44,24 @@ SECRET_ACCESS_KEY =
 Access_Key_ID =
 AWS_Secret_Access_Key =
 ```
+#### NOTE
 
-## How to run?
+If while using Docker your Redis container doesn't connect to the node container
+``` (bash)
+    docker exec -it <redis container name> /bin/bash
+    redis-cli BIND 0.0.0.0
+```
 
 ### Using docker
 
 ```(bash)
     cd Hunlu
-    docker-compose up -build
+    docker-compose up --build
 ```
 
 ### Using npm
 
 ```(bash)
     cd api
-    npm start
-    cd ../web
-    npm start
+    npm run go1
 ```
