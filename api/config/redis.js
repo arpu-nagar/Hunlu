@@ -5,7 +5,7 @@ const client = redis.createClient(6379, process.env.REDIS_HOST || 'localhost');
 
 const redisConfig = {
 	client: client,
-	ttl: 604800,
+	ttl: 604801,
 };
 
 export default (session) => {

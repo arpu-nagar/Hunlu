@@ -6,7 +6,7 @@ import { Container, Icon } from 'semantic-ui-react';
 import { Inner } from './style';
 import { useState } from 'react';
 import { positions, Provider } from 'react-alert';
-import AlertTemplate from 'react-alert-template-basic';
+// import AlertTemplate from 'react-alert-template-basic';
 import axios from 'axios';
 
 export default function Player() {

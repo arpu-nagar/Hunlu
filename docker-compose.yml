@@ -1,5 +1,12 @@
 version: '3.3'
 services:
+  nginx:
+    restart: always
+    build:
+      dockerfile: C:\Users\Nagar\Desktop\node_web\Hunlu\.nginx\Dockerfile
+      context: ./.nginx
+    ports:
+      - 80:80
   api:
     build:
       context: ./api

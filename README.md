@@ -44,10 +44,12 @@ SECRET_ACCESS_KEY =
 Access_Key_ID =
 AWS_Secret_Access_Key =
 ```
+
 #### NOTE
 
 If while using Docker your Redis container doesn't connect to the node container
-``` (bash)
+
+```(bash)
     docker exec -it <redis container name> /bin/bash
     redis-cli BIND 0.0.0.0
 ```

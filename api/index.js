@@ -34,3 +34,7 @@ const PORT = process.env.PORT || 2525;
 app.listen(PORT, () => {
 	console.log(`Server init at port ${PORT}`);
 });
+
+process.on('exit', () => {
+	console.log('EXITING SERVER');
+});
