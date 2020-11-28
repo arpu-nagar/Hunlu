@@ -3,10 +3,15 @@ services:
   nginx:
     restart: always
     build:
-      dockerfile: C:\Users\Nagar\Desktop\node_web\Hunlu\.nginx\Dockerfile
       context: ./.nginx
+      dockerfile: C:\Users\Nagar\Desktop\node_web\Hunlu\.nginx\Dockerfile
     ports:
       - 80:80
+    networks:
+      - network
+    depends_on:
+      - api
+      - web
   api:
     build:
       context: ./api
@@ -31,7 +36,7 @@ services:
     build:
       context: ./web
       dockerfile: C:\Users\Nagar\Desktop\node_web\Hunlu\web\Dockerfile
-    restart: unless-stopped
+    restart: always
     networks:
       - network
     depends_on:

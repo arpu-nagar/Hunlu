@@ -19,7 +19,7 @@ app.use(body.urlencoded({ limit: '50mb', extended: false }));
 app.use(logger('dev'));
 app.use(
 	cors({
-		origin: 'http://localhost:3000', // allow to server to accept request from different origin
+		origin: 'http://web', // allow to server to accept request from different origin
 		methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
 		credentials: true, // allow session cookie from browser to pass through
 	})
@@ -33,8 +33,4 @@ app.use('/api', routes);
 const PORT = process.env.PORT || 2525;
 app.listen(PORT, () => {
 	console.log(`Server init at port ${PORT}`);
-});
-
-process.on('exit', () => {
-	console.log('EXITING SERVER');
 });
