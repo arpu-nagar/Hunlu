@@ -35,7 +35,7 @@ services:
     stdin_open: true
     build:
       context: ./web
-      dockerfile: C:\Users\Nagar\Desktop\node_web\Hunlu\web\Dockerfile
+      dockerfile: C:\Users\Nagar\Desktop\node_web\Hunlu\web\Dockerfile.prod
     restart: always
     networks:
       - network

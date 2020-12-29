@@ -8,6 +8,4 @@ RUN npm install
 
 COPY . .
 
-COPY wait-for-it.sh .
-
 ENTRYPOINT [ "npm", "start" ]

@@ -4,12 +4,12 @@ import SearchContext from '../../../context/searchContent';
 import UserContext from '../../../context/userContext';
 import { Container } from 'semantic-ui-react';
 import ItemCard from '../../../components/ItemCard';
-
+import './style.css';
 const Helper = ({ name }) => {
 	const { UserData } = useContext(UserContext);
 	const { Search } = useContext(SearchContext);
 	return (
-		<Container>
+		<Container className="wrapper">
 			<Navbar name={name} />
 			{UserData.content
 				.filter((item) => {

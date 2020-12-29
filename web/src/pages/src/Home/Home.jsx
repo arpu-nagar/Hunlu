@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { Container, Heading , SubHead} from './style';
+import { Container, Heading, SubHead } from './style';
 import { Button, Icon } from 'semantic-ui-react';
 
 const Home = () => {
