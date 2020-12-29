@@ -1,13 +1,5 @@
 # Hunlu
 
-This is not a reference to Silicon Valley.
-
-## TODOS
-
-1. Finish Player page.
-2. Make Like and other buttons working.
-3. Goto college.
-
 ## Overview
 
 Hunlu is a paid Video on Demand (VOD) application.
@@ -54,14 +46,14 @@ If while using Docker your Redis container doesn't connect to the node container
     redis-cli BIND 0.0.0.0
 ```
 
-### Using docker
+### Using docker (production)
 
 ```(bash)
     cd Hunlu
     docker-compose up --build
 ```
 
-### Using npm
+### Using npm (dev)
 
 ```(bash)
     cd api

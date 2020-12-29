@@ -5,7 +5,6 @@ let exp = {};
 exp.addContent = async (req, res) => {
 	const { name, desc, genre, imdb, rt, type } = req.body;
 	const { location } = req.file;
-
 	const newContent = new Content({
 		name: name,
 		desc: desc,

@@ -12,7 +12,7 @@ const connectDB = async () => {
 			useCreateIndex: true,
 			useFindAndModify: false,
 		});
-		console.log('Database connected.');
+		console.log('Database cnected.');
 	} catch (err) {
 		console.log(err.toString());
 	}

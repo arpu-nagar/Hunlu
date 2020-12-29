@@ -26,12 +26,18 @@ exp.like = async (req, res) => {
 				$push: { likes: id },
 			}
 		);
+		await Content.updateOne(
+			{
+				id: id,
+			},
+			{ $inc: { likes: 1 } }
+		);
 
 		return res.send({
 			success: true,
 			msg: 'Liked',
 		});
-	} catch (error) {
+	} catch (err) {
 		console.log(err);
 		res.send({
 			success: false,
@@ -63,7 +69,12 @@ exp.dislike = async (req, res) => {
 				$push: { dislikes: id },
 			}
 		);
-
+		await Content.updateOne(
+			{
+				id: id,
+			},
+			{ $inc: { dislikes: 1 } }
+		);
 		return res.send({
 			success: true,
 			msg: 'Liked',

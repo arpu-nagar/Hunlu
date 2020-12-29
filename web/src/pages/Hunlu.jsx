@@ -65,7 +65,12 @@ export default function Hunlu() {
 						path="/invalid"
 						exact
 					/>
-					<PrivateRoute restricted={true} comp={Player} path="/play/:id" />
+					<PrivateRoute
+						restricted={true}
+						comp={Player}
+						path="/play/:id"
+						exact
+					/>
 				</Switch>
 			</BrowserRouter>
 		</UserContext.Provider>
