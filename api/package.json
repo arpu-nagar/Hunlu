@@ -4,7 +4,6 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"preinstall": "npm i nodemon -g",
 		"client": "cd ../web && npm start",
 		"go1": "concurrently \"npm start\" \"npm run client\" ",
 		"build": "babel index.js -d dist",
@@ -52,6 +51,6 @@
 		"eslint-plugin-prettier": "^3.1.4",
 		"eslint-plugin-promise": "^4.2.1",
 		"eslint-plugin-standard": "^4.0.1",
-		"prettier": "^2.1.2"
+		"prettier": "2.2.1"
 	}
 }
