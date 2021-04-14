@@ -63,7 +63,12 @@ export const Hunlu: React.FC<{}> = () => {
 	return (
 		<BrowserRouter>
 			<Switch>
-				<PrivateRoute component={MainDriver} path="/home" exact />
+				<PublicRoute
+					restricted={true}
+					component={HomeDriver}
+					path="/home"
+					exact
+				/>
 				<PublicRoute
 					restricted={false}
 					component={PayDriver}
