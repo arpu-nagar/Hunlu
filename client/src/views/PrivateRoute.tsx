@@ -8,7 +8,6 @@ interface PrivateRouteProps extends RouteProps {
 
 const PrivateRoute = (props: PrivateRouteProps) => {
 	const { component: Component, isSignedIn, ...rest } = props;
-
 	return (
 		<Route
 			{...rest}
@@ -18,8 +17,8 @@ const PrivateRoute = (props: PrivateRouteProps) => {
 				) : (
 					<Redirect
 						to={{
-							pathname: '/home',
-							state: { msg: true },
+							pathname: '/login',
+							state: { msg: 'Please login.' },
 						}}
 					/>
 				)

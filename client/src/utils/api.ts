@@ -19,3 +19,8 @@ export const reqData = async (
 		return data;
 	}
 };
+
+export const reqRedirect = (url: string) => {
+	const baseURL = 'http://localhost:2525/api';
+	window.open(baseURL + url, '_self');
+};

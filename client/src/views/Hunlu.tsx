@@ -67,17 +67,15 @@ export const Hunlu: React.FC<{}> = () => {
 					restricted={true}
 					component={HomeDriver}
 					path="/home"
-					exact
 				/>
-				<PublicRoute
-					restricted={false}
+				<PrivateRoute
 					component={PayDriver}
 					path="/pay"
 					exact
 				/>
-				<PublicRoute
-					restricted={false}
-					component={HomeDriver}
+				<PrivateRoute
+					component={MainDriver}
+					isSignedIn={UserData.userID === '' ? false : true}
 					path="/"
 					exact
 				/>
@@ -93,7 +91,12 @@ export const Hunlu: React.FC<{}> = () => {
 					path="/invalid"
 					exact
 				/>
-				<PrivateRoute component={PlayerDriver} path="/play/:id" exact />
+				<PrivateRoute
+					isSignedIn={UserData.userID === '' ? false : true}
+					component={PlayerDriver}
+					path="/play/:id"
+					exact
+				/>
 			</Switch>
 		</BrowserRouter>
 	);

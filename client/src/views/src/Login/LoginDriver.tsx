@@ -3,7 +3,7 @@ import React from 'react';
 import bigLogo from '../../../assets/default-monochrome.svg';
 import GoogleButton from 'react-google-button';
 import FacebookLogin from 'react-facebook-login';
-import { FaFacebook } from 'react-icons/fa';
+import { reqRedirect } from '../../../utils/api';
 
 // import { FacebookProvider, LoginButton } from 'react-facebook';
 
@@ -56,6 +56,8 @@ const useStyles = makeStyles({
 	subHead: {
 		color: '#8899A6',
 		fontWeight: 'lighter',
+		marginTop: '10px',
+		marginLeft: '10px',
 	},
 });
 
@@ -79,19 +81,18 @@ function LoginDriver(props: Props) {
 							marginBottom: '30px',
 						}}
 						onClick={() => {
-							console.log('Google button clicked');
+							reqRedirect('/auth/google');
 						}}
 					/>
 					<FacebookLogin
 						appId="93898"
 						onClick={() => {
-							console.log('Google button clicked');
+							reqRedirect('/auth/facebook');
 						}}
 						callback={() => {
-							console.log('hi');
+							console.log('NO CALLBACK INITIATED.');
 						}}
 						textButton="Sign in with Facebook"
-						icon={<FaFacebook />}
 					/>
 				</div>
 			</Card>
