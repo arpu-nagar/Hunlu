@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -10,18 +10,18 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import CloseIcon from '@material-ui/icons/Close';
 
 const useStyles = makeStyles({
 	list: {
-		width: 200,
-		color: 'white',
+		width: 200
 	},
 	fullList: {
 		width: 'auto',
 	},
 	menuDiv: {
 		backgroundColor: '#192734',
-		color: 'black',
+		color: '#ffffff',
 	},
 });
 
@@ -29,14 +29,19 @@ type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
 interface Props {
 	open?: boolean;
+	// closeMenu: any;
 }
 
 export default function DrawerDriver(props: Props) {
 	const classes = useStyles();
 	const [state, setState] = React.useState({
-		left: false,
+		left: props.open,
 	});
-
+	useEffect(()=> {
+		setState(state => ({
+			left: props.open
+		}))
+	}, [props])
 	const toggleDrawer = (anchor: Anchor, open: boolean) => (
 		event: React.KeyboardEvent | React.MouseEvent
 	) => {
@@ -60,6 +65,7 @@ export default function DrawerDriver(props: Props) {
 			onClick={toggleDrawer(anchor, false)}
 			onKeyDown={toggleDrawer(anchor, false)}
 		>
+			<Button onClick={toggleDrawer(anchor, false)}><CloseIcon/></Button>
 			<List>
 				{['Liked Videos', 'Disliked Videos', 'Favorites'].map(
 					(text, index) => (
@@ -90,10 +96,9 @@ export default function DrawerDriver(props: Props) {
 		<div className={classes.menuDiv}>
 			{/* {(['left'] as Anchor[]).map((anchor) => ( */}
 			<React.Fragment key={anchor} >
-				{/* <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button> */}
 				<Drawer
 					anchor={anchor}
-					open={props.open}
+					open={state.left}
 					onClose={toggleDrawer(anchor, false)}
 				>
 					{list(anchor)}

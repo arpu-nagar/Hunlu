@@ -211,7 +211,7 @@ export default function Navbar(props: Props) {
 
 					<img src={logo} alt="logo" className={classes.logo} />
 
-					<div className={classes.search}>
+					{/* <div className={classes.search}>
 						<div className={classes.searchIcon}>
 							<SearchIcon />
 						</div>
@@ -223,7 +223,7 @@ export default function Navbar(props: Props) {
 							}}
 							inputProps={{ 'aria-label': 'search' }}
 						/>
-					</div>
+					</div> */}
 					<div className={classes.grow} />
 					<div className={classes.sectionDesktop}>
 						<IconButton
