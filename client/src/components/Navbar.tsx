@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
 	fade,
 	makeStyles,
@@ -16,10 +16,9 @@ import Menu from '@material-ui/core/Menu';
 import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import MailIcon from '@material-ui/icons/Mail';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import logo  from '../assets/fontLogo.svg';
+import logo from '../assets/fontLogo.svg';
+// import SearchContext from '../context/searchContext';
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -97,8 +96,8 @@ const useStyles = makeStyles((theme: Theme) =>
 	})
 );
 
-interface Props{
-    changeMenu: any
+interface Props {
+	changeMenu: any;
 }
 
 export default function Navbar(props: Props) {
@@ -108,7 +107,7 @@ export default function Navbar(props: Props) {
 		mobileMoreAnchorEl,
 		setMobileMoreAnchorEl,
 	] = React.useState<null | HTMLElement>(null);
-
+	const [Search, setSearch] = useState('');
 	const isMenuOpen = Boolean(anchorEl);
 	const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -175,7 +174,7 @@ export default function Navbar(props: Props) {
 				</IconButton>
 				<p>Notifications</p>
 			</MenuItem> */}
-			<MenuItem >
+			<MenuItem>
 				{/* <IconButton
 					aria-label="account of current user"
 					aria-controls="primary-search-account-menu"
@@ -202,28 +201,29 @@ export default function Navbar(props: Props) {
 						className={classes.menuButton}
 						color="inherit"
 						aria-label="open drawer"
-                        onClick={() => {
-                            props.changeMenu()
-                        }}
+						onClick={() => {
+							props.changeMenu();
+						}}
 					>
 						<MenuIcon />
 					</IconButton>
 
 					<img src={logo} alt="logo" className={classes.logo} />
-
-					{/* <div className={classes.search}>
-						<div className={classes.searchIcon}>
-							<SearchIcon />
+					{/* <SearchContext.Provider value={{ Search, setSearch }}>
+						<div className={classes.search}>
+							<div className={classes.searchIcon}>
+								<SearchIcon />
+							</div>
+							<InputBase
+								placeholder="Search…"
+								classes={{
+									root: classes.inputRoot,
+									input: classes.inputInput,
+								}}
+								inputProps={{ 'aria-label': 'search' }}
+							/>
 						</div>
-						<InputBase
-							placeholder="Search…"
-							classes={{
-								root: classes.inputRoot,
-								input: classes.inputInput,
-							}}
-							inputProps={{ 'aria-label': 'search' }}
-						/>
-					</div> */}
+					</SearchContext.Provider> */}
 					<div className={classes.grow} />
 					<div className={classes.sectionDesktop}>
 						<IconButton

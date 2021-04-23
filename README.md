@@ -2,6 +2,7 @@
 
 ## Overview
 
+(This project has been discontinued.)
 Hunlu is a paid Video on Demand (VOD) application.
 
 ## Built using:

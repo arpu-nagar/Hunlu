@@ -1,4 +1,4 @@
-import { Container, makeStyles } from '@material-ui/core';
+import { Container, makeStyles, TextField } from '@material-ui/core';
 import React, { useEffect } from 'react';
 import DrawerDriver from '../../../components/DrawerDriver';
 import Navbar from '../../../components/Navbar';
@@ -10,15 +10,15 @@ const useStyles = makeStyles({
 		width: 'calc(100vw-40px)',
 		height: '100%',
 		backgroundColor: '#15202B',
-		overflowX: 'hidden'
+		overflowX: 'hidden',
 	},
 	mainContainer: {
 		display: 'flex',
 		flexDirection: 'row',
 		flexWrap: 'wrap',
 		width: '100%',
-		overflowX: 'hidden'
-	}
+		overflowX: 'hidden',
+	},
 });
 
 function MainDriver(props: Props) {
@@ -37,24 +37,23 @@ function MainDriver(props: Props) {
 			menuOpen: false,
 		});
 	}
-	
+
 	const classes = useStyles();
 	return (
-		<div className={classes.root}
-		onKeyPress={closeDrawer}
-		>
+		<div className={classes.root} onKeyPress={closeDrawer}>
 			<Navbar changeMenu={changeMenu} />
-			<DrawerDriver open={state.menuOpen}/>
+			<DrawerDriver open={state.menuOpen} />
 			<div className={classes.mainContainer}>
-			<VideoCard />
-			<VideoCard />
-			<VideoCard />
-			<VideoCard />
-			<VideoCard />
-			<VideoCard />
+				<VideoCard />
+				<VideoCard />
+				<VideoCard />
+				<VideoCard />
+				<VideoCard />
+				<VideoCard />
 			</div>
-			
+			{console.log(props)}
 		</div>
+		
 	);
 }
 
