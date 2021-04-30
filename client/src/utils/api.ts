@@ -5,7 +5,7 @@ export const reqData = async (
 	payload: AxiosRequestConfig,
 	method: string
 ) => {
-	const baseURL = 'http://localhost:2525/api';
+	const baseURL = 'http://65.2.128.235:2525/api';
 	if (method === 'GET') {
 		const data = await axios.get(baseURL + url);
 		return data;
@@ -21,6 +21,6 @@ export const reqData = async (
 };
 
 export const reqRedirect = (url: string) => {
-	const baseURL = 'http://localhost:2525/api';
+	const baseURL = 'http://65.2.128.235:2525/api';
 	window.open(baseURL + url, '_self');
 };
