@@ -6,7 +6,7 @@
     "scripts": {
         "client": "cd ../web && npm start",
         "go1": "concurrently \"npm start\" \"npm run client\" ",
-        "build": "babel index.js -d dist",
+        "build": "nodemon --exec babel-node index.js",
         "start": "nodemon --exec babel-node index.js",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
